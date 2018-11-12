@@ -1,6 +1,5 @@
 
 Spring IOC
-GitHub: https://github.com/chauncycho/spring_test
 
 IOC ：Inverse-of-control  控制反转
 反转的概念就是将原本在程序中手动创建实体对象的控制权，交给Spring框架管理
