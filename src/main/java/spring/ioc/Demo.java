@@ -34,4 +34,24 @@ public class Demo {
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
         Food food = (Food) applicationContext.getBean("food3");
     }
+
+    /**
+     * bean的作用范围测试
+     * singleton 单例，每次创建都返回同一个实例
+     * prototype 每次创建都返回一个新的实例
+     */
+    @Test
+    public void demo4(){
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+        Food food = (Food)applicationContext.getBean("food");
+        Food food1 = (Food)applicationContext.getBean("food");
+        Food food2 = (Food)applicationContext.getBean("food");
+        System.out.println("food:"+food.hashCode()+"  food1:"+food1.hashCode()+"  food2:"+food2.hashCode());
+
+        FoodFactory foodFactory = (FoodFactory)applicationContext.getBean("foodFactory");
+        FoodFactory foodFactory1 = (FoodFactory)applicationContext.getBean("foodFactory");
+        FoodFactory foodFactory2 = (FoodFactory)applicationContext.getBean("foodFactory");
+        System.out.println("foodFactory:"+foodFactory.hashCode()+"  foodFactory1:"+foodFactory1.hashCode()+"  foodFactory2:"+foodFactory2.hashCode());
+
+    }
 }

@@ -5,7 +5,7 @@
 
     <!-- Food创建的控制权交给Spring -->
     <!-- 通过构造方法实例对象-->
-    <bean id="food" class="spring.ioc.Food">
+    <bean id="food" class="spring.ioc.Food" scope="prototype">
         <!-- 设置属性 -->
         <property name="kind" value="水果"/>
         <property name="name" value="香蕉"/>
@@ -16,7 +16,7 @@
     <bean id="food2" class="spring.ioc.FoodStaticFactory" factory-method="getFood"/>
 
     <!-- 通过实例工厂实例对象 -->
-    <bean id="foodFactory" class="spring.ioc.FoodFactory"/>
+    <bean id="foodFactory" class="spring.ioc.FoodFactory" scope="singleton"/>
     <bean id="food3" factory-bean="foodFactory" factory-method="getFood"/>
 
 </beans>
