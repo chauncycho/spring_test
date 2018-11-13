@@ -12,11 +12,17 @@
         <property name="taste" value="甜甜的"/>
     </bean>
 
-    <!-- 通过静态工厂实例对象 -->
-    <bean id="food2" class="spring.ioc.FoodStaticFactory" factory-method="getFood"/>
+    <!--&lt;!&ndash; 通过静态工厂实例对象 &ndash;&gt;-->
+    <!--<bean id="food2" class="spring.ioc.FoodStaticFactory" factory-method="getFood"/>-->
 
-    <!-- 通过实例工厂实例对象 -->
-    <bean id="foodFactory" class="spring.ioc.FoodFactory" scope="singleton"/>
-    <bean id="food3" factory-bean="foodFactory" factory-method="getFood"/>
+    <!--&lt;!&ndash; 通过实例工厂实例对象 &ndash;&gt;-->
+    <!--<bean id="foodFactory" class="spring.ioc.FoodFactory" scope="singleton"/>-->
+    <!--<bean id="food3" factory-bean="foodFactory" factory-method="getFood"/>-->
+
+    <!-- Bean生命周期 -->
+    <bean id="lifeCircleTest" class="spring.ioc.LifeCircleTest" init-method="setUp" destroy-method="teardown">
+        <property name="name" value="testName"/>
+    </bean>
+    <bean class="spring.ioc.MyBeanPostProcessor"/>
 
 </beans>

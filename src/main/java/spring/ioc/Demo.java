@@ -10,7 +10,6 @@ public class Demo {
      * 通过spring生成实体测试
      * 通过构造方法
      */
-    @Test
     public void demo1(){
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
         Food food = (Food) applicationContext.getBean("food");
@@ -20,7 +19,6 @@ public class Demo {
     /**
      * 通过静态工厂
      */
-    @Test
     public void demo2(){
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
         Food food = (Food) applicationContext.getBean("food2");
@@ -29,7 +27,6 @@ public class Demo {
     /**
      * 通过实例工厂
      */
-    @Test
     public void demo3(){
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
         Food food = (Food) applicationContext.getBean("food3");
@@ -40,7 +37,6 @@ public class Demo {
      * singleton 单例，每次创建都返回同一个实例
      * prototype 每次创建都返回一个新的实例
      */
-    @Test
     public void demo4(){
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
         Food food = (Food)applicationContext.getBean("food");
@@ -53,5 +49,16 @@ public class Demo {
         FoodFactory foodFactory2 = (FoodFactory)applicationContext.getBean("foodFactory");
         System.out.println("foodFactory:"+foodFactory.hashCode()+"  foodFactory1:"+foodFactory1.hashCode()+"  foodFactory2:"+foodFactory2.hashCode());
 
+    }
+
+    /**
+     * Bean的生命周期测试
+     */
+    @Test
+    public void demo5(){
+        ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+        LifeCircleTest lct = (LifeCircleTest) applicationContext.getBean("lifeCircleTest");
+        lct.run();
+        applicationContext.close();
     }
 }
