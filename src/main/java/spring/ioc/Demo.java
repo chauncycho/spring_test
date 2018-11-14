@@ -61,4 +61,34 @@ public class Demo {
         lct.run();
         applicationContext.close();
     }
+
+    /**
+     * 属性注入测试
+     */
+    @Test
+    public void demo6(){
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+        Person person = (Person) applicationContext.getBean("person");
+        System.out.println(person);
+    }
+
+    /**
+     * p名称空间注入测试
+     */
+    @Test
+    public void demo7(){
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+        Person person = (Person) applicationContext.getBean("person2");
+        System.out.println(person);
+    }
+
+    /**
+     * SpEL表达式属性注入测试
+     */
+    @Test
+    public void demo8(){
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+        Person person = (Person) applicationContext.getBean("person3");
+        System.out.println(person);
+    }
 }

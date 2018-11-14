@@ -1,28 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:p="http://www.springframework.org/schema/p"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!-- Food创建的控制权交给Spring -->
     <!-- 通过构造方法实例对象-->
-    <bean id="food" class="spring.ioc.Food" scope="prototype">
-        <!-- 设置属性 -->
-        <property name="kind" value="水果"/>
-        <property name="name" value="香蕉"/>
-        <property name="taste" value="甜甜的"/>
-    </bean>
+    <!--<bean id="food" class="spring.ioc.Food" scope="prototype">-->
+        <!--&lt;!&ndash; 设置属性 &ndash;&gt;-->
+        <!--<property name="kind" value="水果"/>-->
+        <!--<property name="name" value="香蕉"/>-->
+        <!--<property name="taste" value="甜甜的"/>-->
+    <!--</bean>-->
 
-    <!--&lt;!&ndash; 通过静态工厂实例对象 &ndash;&gt;-->
+
+    <!-- 通过静态工厂实例对象 -->
     <!--<bean id="food2" class="spring.ioc.FoodStaticFactory" factory-method="getFood"/>-->
 
-    <!--&lt;!&ndash; 通过实例工厂实例对象 &ndash;&gt;-->
+
+    <!-- 通过实例工厂实例对象 -->
     <!--<bean id="foodFactory" class="spring.ioc.FoodFactory" scope="singleton"/>-->
     <!--<bean id="food3" factory-bean="foodFactory" factory-method="getFood"/>-->
 
-    <!-- Bean生命周期 -->
-    <bean id="lifeCircleTest" class="spring.ioc.LifeCircleTest" init-method="setUp" destroy-method="teardown">
-        <property name="name" value="testName"/>
-    </bean>
-    <bean class="spring.ioc.MyBeanPostProcessor"/>
 
+    <!-- Bean生命周期 -->
+    <!--<bean id="lifeCircleTest" class="spring.ioc.LifeCircleTest" init-method="setUp" destroy-method="teardown">-->
+        <!--<property name="name" value="testName"/>-->
+    <!--</bean>-->
+    <!--<bean class="spring.ioc.MyBeanPostProcessor"/>-->
+
+
+    <!-- 属性注入测试 -->
+    <!--<bean id="person" class="spring.ioc.Person">-->
+        <!--<property name="name" value="张三"/>-->
+        <!--<property name="age" value="18"/>-->
+        <!--<property name="food" ref="food4"/>-->
+    <!--</bean>-->
+    <!--<bean id="food4" class="spring.ioc.Food">-->
+        <!--<property name="name" value="香蕉"/>-->
+        <!--<property name="taste" value="甜甜的"/>-->
+        <!--<property name="kind" value="水果"/>-->
+    <!--</bean>-->
+
+
+    <!-- p名称空间注入测试 -->
+    <!--<bean id="person2" class="spring.ioc.Person" p:age="18" p:name="张三" p:food-ref="food5"/>-->
+    <!--<bean id="food5" class="spring.ioc.Food" p:name="苹果" p:kind="水果" p:taste="有点酸"/>-->
+
+
+    <!-- SpEL属性注入测试 -->
+    <bean id="person3" class="spring.ioc.Person">
+        <property name="name" value="#{'李四'}"/>
+        <property name="age" value="#{T(java.lang.Math).random() * 100}"/>
+        <property name="food" value="#{food6}"/>
+    </bean>
+    <bean id="food6" class="spring.ioc.Food">
+        <property name="name" value="#{'橘子'}"/>
+        <property name="kind" value="#{'水果'}"/>
+        <property name="taste" value="#{'特别酸'}"/>
+    </bean>
 </beans>
