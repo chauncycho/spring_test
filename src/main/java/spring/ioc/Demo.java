@@ -91,4 +91,15 @@ public class Demo {
         Person person = (Person) applicationContext.getBean("person3");
         System.out.println(person);
     }
+
+
+    /**
+     * 复杂类型属性注入测试
+     */
+    @Test
+    public void demo9(){
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+        CollectionBean collectionBean = (CollectionBean) applicationContext.getBean("collectionBean");
+        System.out.println(collectionBean);
+    }
 }

@@ -49,14 +49,47 @@
 
 
     <!-- SpEL属性注入测试 -->
-    <bean id="person3" class="spring.ioc.Person">
-        <property name="name" value="#{'李四'}"/>
-        <property name="age" value="#{T(java.lang.Math).random() * 100}"/>
-        <property name="food" value="#{food6}"/>
-    </bean>
-    <bean id="food6" class="spring.ioc.Food">
-        <property name="name" value="#{'橘子'}"/>
-        <property name="kind" value="#{'水果'}"/>
-        <property name="taste" value="#{'特别酸'}"/>
+    <!--<bean id="person3" class="spring.ioc.Person">-->
+        <!--<property name="name" value="#{'李四'}"/>-->
+        <!--<property name="age" value="#{T(java.lang.Math).random() * 100}"/>-->
+        <!--<property name="food" value="#{food6}"/>-->
+    <!--</bean>-->
+    <!--<bean id="food6" class="spring.ioc.Food">-->
+        <!--<property name="name" value="#{'橘子'}"/>-->
+        <!--<property name="kind" value="#{'水果'}"/>-->
+        <!--<property name="taste" value="#{'特别酸'}"/>-->
+    <!--</bean>-->
+
+
+    <!-- 复杂类型属性注入测试 -->
+    <bean id="collectionBean" class="spring.ioc.CollectionBean">
+        <property name="arr">
+            <list>
+                <value>111</value>
+                <value>222</value>
+                <value>333</value>
+            </list>
+        </property>
+        <property name="list">
+            <list>
+                <value>aaa</value>
+                <value>bbb</value>
+                <value>ccc</value>
+            </list>
+        </property>
+        <property name="set">
+            <set>
+                <value>123</value>
+                <value>456</value>
+                <value>789</value>
+            </set>
+        </property>
+        <property name="map">
+            <map>
+                <entry key="aaa" value="111"/>
+                <entry key="bbb" value="222"/>
+                <entry key="ccc" value="333"/>
+            </map>
+        </property>
     </bean>
 </beans>
