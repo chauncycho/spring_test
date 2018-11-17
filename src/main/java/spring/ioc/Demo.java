@@ -102,4 +102,47 @@ public class Demo {
         CollectionBean collectionBean = (CollectionBean) applicationContext.getBean("collectionBean");
         System.out.println(collectionBean);
     }
+
+    /**
+     * 通过注解实现Bean管理测试
+     */
+    @Test
+    public void demo10(){
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+        PersonForAnnotation pfa = (PersonForAnnotation) applicationContext.getBean("personForAnnotation");
+        pfa.say();
+    }
+
+    /**
+     * 注解形式属性注入
+     */
+    @Test
+    public void demo11(){
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+        PersonForAnnotation pfa = (PersonForAnnotation) applicationContext.getBean("personForAnnotation");
+        pfa.eat();
+    }
+
+    /**
+     * 注解形式类属性的注入
+     */
+    @Test
+    public void demo12(){
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+        PersonForAnnotation pfa = (PersonForAnnotation) applicationContext.getBean("personForAnnotation");
+
+        pfa.save();
+    }
+
+    /**
+     * 通过注解进行初始化和销毁
+     */
+    @Test
+    public void demo13(){
+        ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+        PersonForAnnotation pfa = (PersonForAnnotation) applicationContext.getBean("personForAnnotation");
+        pfa.save();
+
+        applicationContext.close();
+    }
 }
